@@ -1,13 +1,20 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  title=signal('my-app')
-   
+  selectedcolor=signal('#3498db')
+
+  oncolorchange(newColor:string){
+    this.selectedcolor.set(newColor)
+  }
+   copycolor(){
+    navigator.clipboard.writeText(this.selectedcolor())
+    alert('color code copied to clipboard'+this.selectedcolor())
+
+   }
 }
